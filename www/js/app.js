@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('festinare_mobile', ['ionic', 'ngResource'])
-  .config(function($stateProvider, $urlRouterProvider) {
+  .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
     // TODO
     // ALPHA PHASE
@@ -70,7 +70,31 @@ angular.module('festinare_mobile', ['ionic', 'ngResource'])
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');
+    $httpProvider.interceptors.push('authInterceptor');
+  })
+  .factory('authInterceptor', function ($rootScope, $q, SessionService, $location) {
+    return {
+      // Add authorization token to headers
+      request: function (config) {
+        config.headers = config.headers || {};
+        if (SessionService.getCurrentSession()) {
+          config.headers.Authorization = 'Bearer ' + SessionService.getCurrentSession();
+        }
+        return config;
+      },
 
+      // Intercept 401s and redirect you to login
+      responseError: function(response) {
+        if(response.status === 401) {
+          $location.path('/');
+          // remove any state tokens
+          return $q.reject(response);
+        }
+        else {
+          return $q.reject(response);
+        }
+      }
+    };
   })
   .run(function($ionicPlatform, $rootScope) {
     $ionicPlatform.ready(function() {
