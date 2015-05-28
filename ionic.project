@@ -1,6 +1,6 @@
 {
   "name": "festinare_mobile",
-  "app_id": "",
+  "app_id": "f4623b2d",
   "gulpStartupTasks": [
     "sass",
     "index",
