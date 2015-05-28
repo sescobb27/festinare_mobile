@@ -18,7 +18,12 @@
   "strict": true,
   "trailing": true,
   "smarttabs": true,
+  "noempty": true,
+  "nonew": true,
+  "eqnull": true,
+  "globalstrict": true,
   "globals": {
-    "angular": false
+    "angular": false,
+    "cordova": false
   }
 }
