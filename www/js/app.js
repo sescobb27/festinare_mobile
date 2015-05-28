@@ -1,55 +1,78 @@
 'use strict';
 
-angular.module('festinare_mobile', ['ionic'])
+angular.module('festinare_mobile', ['ionic', 'ngResource'])
   .config(function($stateProvider, $urlRouterProvider) {
+
+    // TODO
+    // ALPHA PHASE
+    // $ionicAppProvider.identify({
+    //   // The App ID (from apps.ionic.io) for the server
+    //   app_id: 'f4623b2d',
+    //   // The public API key all services will use for this app
+    //   api_key: 'f9b768bc90c3b8d4927824d0d190b3ec42362343e722eff5',
+    //   // The GCM project ID (project number) from your Google Developer Console (un-comment if used)
+    //   gcm_id: '516765447023'
+    // });
+
     $stateProvider
-      .state('tab', {
-        url: '/tab',
-        abstract: true,
-        templateUrl: 'templates/tabs.html'
+      .state('login', {
+        url: '/login',
+        templateUrl: 'js/components/auth/login.html',
+        controller: 'AuthCtrl'
       })
-      .state('tab.dash', {
-        url: '/dash',
-        views: {
-          'tab-dash': {
-            templateUrl: 'templates/tab-dash.html',
-            controller: 'DashCtrl'
-          }
-        }
-      })
-      .state('tab.chats', {
-          url: '/chats',
-        views: {
-          'tab-chats': {
-            templateUrl: 'templates/tab-chats.html',
-            controller: 'ChatsCtrl'
-          }
-        }
-      })
-      .state('tab.chat-detail', {
-        url: '/chats/:chatId',
-        views: {
-          'tab-chats': {
-            templateUrl: 'templates/chat-detail.html',
-            controller: 'ChatDetailCtrl'
-          }
-        }
-      })
-      .state('tab.account', {
-        url: '/account',
-        views: {
-          'tab-account': {
-            templateUrl: 'templates/tab-account.html',
-            controller: 'AccountCtrl'
-          }
-        }
+      .state('register', {
+        url: '/register',
+        templateUrl: 'js/components/auth/register.html',
+        controller: 'AuthCtrl'
       });
 
+      // .state('tab', {
+      //   url: '/tab',
+      //   abstract: true,
+      //   templateUrl: 'templates/tabs.html'
+      // })
+      // .state('tab.dash', {
+      //   url: '/dash',
+      //   views: {
+      //     'tab-dash': {
+      //       templateUrl: 'templates/tab-dash.html',
+      //       controller: 'DashCtrl'
+      //     }
+      //   }
+      // })
+      // .state('tab.chats', {
+      //     url: '/chats',
+      //   views: {
+      //     'tab-chats': {
+      //       templateUrl: 'templates/tab-chats.html',
+      //       controller: 'ChatsCtrl'
+      //     }
+      //   }
+      // })
+      // .state('tab.chat-detail', {
+      //   url: '/chats/:chatId',
+      //   views: {
+      //     'tab-chats': {
+      //       templateUrl: 'templates/chat-detail.html',
+      //       controller: 'ChatDetailCtrl'
+      //     }
+      //   }
+      // })
+      // .state('tab.account', {
+      //   url: '/account',
+      //   views: {
+      //     'tab-account': {
+      //       templateUrl: 'templates/tab-account.html',
+      //       controller: 'AccountCtrl'
+      //     }
+      //   }
+      // });
+
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/tab/dash');
+    $urlRouterProvider.otherwise('/login');
 
   })
-  .run(function($ionicPlatform) {
+  .run(function($ionicPlatform, $rootScope) {
     $ionicPlatform.ready(function() {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -60,5 +83,13 @@ angular.module('festinare_mobile', ['ionic'])
         // org.apache.cordova.statusbar required
         StatusBar.styleLightContent();
       }
+    });
+
+    // TODO
+    // ALPHA PHASE
+    // GCM push registrations
+    $rootScope.$on('$cordovaPush:tokenReceived', function(event, data) {
+      console.log('Got token', data.token, data.platform);
+      // Do something with the token
     });
   });
