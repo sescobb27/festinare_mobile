@@ -1,4 +1,6 @@
-angular.module('starter.controllers', [])
+'use strict';
+
+angular.module('festinare_mobile')
 
 .controller('DashCtrl', function($scope) {})
 
