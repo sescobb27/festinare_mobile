@@ -4,14 +4,14 @@ angular.module('festinare_mobile')
   .factory('AuthService', function ($rootScope, SessionService, $resource, UserService, $q) {
     var AuthService = this;
     var user_promise = null;
-    var client;
+    var user;
     var subscriptors = [];
 
     if(SessionService.getCurrentSession()) {
       user_promise = UserService.get().then(function (res) {
-        console.log('CLIENT: ', res.client);
-        client = res.client;
-        notify(client);
+        console.log('CLIENT: ', res.user);
+        user = res.user;
+        notify(user);
       });
     } else {
       user_promise = $q(function (resolve, reject) { reject(); });
@@ -25,9 +25,9 @@ angular.module('festinare_mobile')
       return UserService.login(credentials).then(function (res) {
         SessionService.addSession(res);
         user_promise = UserService.get().then(function (res) {
-          client = res.client;
-          notify(client);
-          return client;
+          user = res.user;
+          notify(user);
+          return user;
         });
         return user_promise;
       }).catch(function (error) {
@@ -53,17 +53,17 @@ angular.module('festinare_mobile')
 
     AuthService.isLoggedIn = function () {
       return user_promise.then(function () {
-        return !!client;
+        return !!user;
       }).catch(function (error) {
         // TODO
         console.error(error);
-        return false
+        return false;
       });
     };
 
     AuthService.getCurrentUser = function() {
       return user_promise.then(function () {
-        return client;
+        return user;
       });
     };
 

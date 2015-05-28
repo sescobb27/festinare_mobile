@@ -23,7 +23,7 @@ angular.module('festinare_mobile')
     };
 
     UserService.login = function (credentials) {
-      return User.login({action: 'login'}, {client: credentials}).$promise;
+      return User.login({action: 'login'}, {user: credentials}).$promise;
     };
 
     UserService.update = function (id, data) {
