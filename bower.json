@@ -1,7 +1,10 @@
 {
-  "name": "HelloIonic",
+  "name": "festinare_mobile",
   "private": "true",
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#1.0.0"
+  },
+  "dependencies": {
+    "angular-resource": "~1.4.0"
   }
 }
