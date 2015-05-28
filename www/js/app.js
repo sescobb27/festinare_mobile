@@ -4,9 +4,9 @@ angular.module('festinare_mobile', ['ionic'])
   .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('tab', {
-        url: "/tab",
+        url: '/tab',
         abstract: true,
-        templateUrl: "templates/tabs.html"
+        templateUrl: 'templates/tabs.html'
       })
       .state('tab.dash', {
         url: '/dash',

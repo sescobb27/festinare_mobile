@@ -3,7 +3,9 @@
 angular.module('festinare_mobile')
   .factory('UserService', function ($resource, API_V1_URL) {
 
+    var UserService = this;
     const USERS_URL = API_V1_URL + '/users/:action/:id';
+
     var User = $resource(USERS_URL, {
       action: '@action',
       id: '@id'
