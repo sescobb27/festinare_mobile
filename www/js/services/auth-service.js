@@ -30,6 +30,9 @@ angular.module('festinare_mobile')
           return client;
         });
         return user_promise;
+      }).catch(function (error) {
+        // TODO
+        console.error(error);
       });
     };
 
@@ -51,8 +54,10 @@ angular.module('festinare_mobile')
     AuthService.isLoggedIn = function () {
       return user_promise.then(function () {
         return !!client;
-      }).catch(function () {
-        return false;
+      }).catch(function (error) {
+        // TODO
+        console.error(error);
+        return false
       });
     };
 
