@@ -9,7 +9,7 @@ angular.module('festinare_mobile')
 
     if(SessionService.getCurrentSession()) {
       user_promise = UserService.get().then(function (res) {
-        console.log('CLIENT: ', res.user);
+        console.log('USER: ', res.user);
         user = res.user;
         notify(user);
       });

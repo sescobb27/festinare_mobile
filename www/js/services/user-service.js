@@ -19,19 +19,19 @@ angular.module('festinare_mobile')
     });
 
     UserService.get = function () {
-      return User.get({action: 'me'}).$promise;
+      return User.get({ action: 'me' }).$promise;
     };
 
     UserService.login = function (credentials) {
-      return User.login({action: 'login'}, {user: credentials}).$promise;
+      return User.login({action: 'login'}, { user: credentials }).$promise;
     };
 
     UserService.update = function (id, data) {
-      return User.update({ id: id }, {client: data}).$promise;
+      return User.update({ id: id }, { user: data }).$promise;
     };
 
     UserService.logout = function () {
-      return User.save({action: 'logout'}).$promise;
+      return User.save({ action: 'logout' }).$promise;
     };
 
     return UserService;
