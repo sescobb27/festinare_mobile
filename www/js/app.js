@@ -24,6 +24,11 @@ angular.module('festinare_mobile', ['ionic', 'ngResource'])
         url: '/register',
         templateUrl: 'js/components/auth/register.html',
         controller: 'AuthCtrl'
+      })
+      .state('preferences', {
+        url: '/preferences',
+        templateUrl: 'js/components/user/preferences/preferences.html',
+        controller: 'PreferencesCtrl'
       });
 
       // .state('tab', {
@@ -70,9 +75,9 @@ angular.module('festinare_mobile', ['ionic', 'ngResource'])
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');
-    $httpProvider.interceptors.push('authInterceptor');
+    $httpProvider.interceptors.push('AuthInterceptor');
   })
-  .factory('authInterceptor', function ($rootScope, $q, SessionService, $location) {
+  .factory('AuthInterceptor', function ($rootScope, $q, SessionService, $location) {
     return {
       // Add authorization token to headers
       request: function (config) {

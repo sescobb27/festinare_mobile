@@ -1,0 +1,23 @@
+<ion-view view-title="preferences" align-title="left">
+  <ion-content>
+    <form name="category_form" ng-submit="setupCategories()">
+      <div class="list card">
+        <li class="item item-checkbox" ng-repeat="category in categories track by $index">
+          <label class="checkbox">
+            <input type="checkbox" ng-model="category.selected">
+          </label>
+          <i class="icon {{category.icon}}"></i>
+          {{category.name}}
+        </li>
+        <a href="#"  class="item item-icon-left">
+
+        </a>
+      </div>
+      <button class="button button-block button-assertive" type="submit">
+        Save
+      </button>
+    </form>
+  </ion-content>
+</ion-view>
+<!-- <div>Icons made by <a href="http://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>             is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
+ -->
