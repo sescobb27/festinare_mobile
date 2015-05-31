@@ -12,16 +12,12 @@
           {{category.name}}
         </p>
         <rating ng-model="client.avg_rate" max="5"></rating>
-        <div ng-repeat="discount in client.discounts track by $index">
-          <h2>
-            {{discount.title}}
-          </h2>
-          <button class="button button-block button-positive"
-                  ng-click="likeDiscount(client._id, discount)">
-            <i class="icon ion-checkmark-round"></i>
-            Like
-          </button>
-        </div>
+        <ion-slide-box>
+          <ion-slide ng-repeat="discount in client.discounts track by $index">
+            <discount-preview client-id="client._id" discount="discount">
+            </discount-preview>
+          </ion-slide>
+        </ion-slide-box>
       </div>
     </div>
   </ion-content>

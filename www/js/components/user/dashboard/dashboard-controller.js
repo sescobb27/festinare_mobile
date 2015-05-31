@@ -19,16 +19,11 @@ angular.module('festinare_mobile')
       return icon;
     };
 
-    $scope.likeDiscount = function (clientId, discount) {
-      console.log(clientId, discount);
-    };
-
     DiscountService.getDiscounts().then(function (clients) {
       $scope.clients = clients;
       $scope.clients.forEach(function (client) {
         client.image_url = client.image_url || 'http://placehold.it/150x150';
       });
-      console.info(clients.discounts);
       $ionicLoading.hide();
     }).catch(function (error) {
       // TODO
