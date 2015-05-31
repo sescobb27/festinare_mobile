@@ -7,9 +7,9 @@ angular.module('festinare_mobile')
 
     CategoriesService.all = function () {
       return [
-        { icon: 'ion-beer', name: 'Bar', selected: false },
-        { icon: 'ion-music-note', name: 'Disco', selected: false },
-        { icon: 'ion-icecream', name: 'Restaurant', selected: false }
+        { icon: 'ion-beer', name: 'Bar', status: false },
+        { icon: 'ion-music-note', name: 'Disco', status: false },
+        { icon: 'ion-icecream', name: 'Restaurant', status: false }
       ];
     };
 

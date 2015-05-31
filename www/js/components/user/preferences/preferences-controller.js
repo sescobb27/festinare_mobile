@@ -12,7 +12,7 @@ angular.module('festinare_mobile')
       categories.forEach(function (category) {
         $scope.categories.forEach(function (optCategory) {
           if (optCategory.name === category.name) {
-            optCategory.selected = true;
+            optCategory.status = true;
           }
         });
       });
@@ -27,15 +27,8 @@ angular.module('festinare_mobile')
     });
 
     $scope.setupCategories = function () {
-      var categories = $scope.categories.map(function (category) {
-        if (category.selected) {
-          return { name: category.name };
-        }
-      }).filter(function (category) {
-        return category;
-      });
       UserService.update($scope.user._id, {
-        categories: categories
+        categories: $scope.categories
       }).then(function () {
 
       }).catch(function (error) {
