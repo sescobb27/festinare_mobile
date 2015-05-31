@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('festinare_mobile', ['ionic', 'ngResource'])
+angular.module('festinare_mobile', ['ionic', 'ngResource', 'ionic.rating'])
   .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
     // TODO
@@ -29,6 +29,11 @@ angular.module('festinare_mobile', ['ionic', 'ngResource'])
         url: '/preferences',
         templateUrl: 'js/components/user/preferences/preferences.html',
         controller: 'PreferencesCtrl'
+      })
+      .state('dashboard', {
+        url: '/dashboard',
+        templateUrl: 'js/components/user/dashboard/dashboard.html',
+        controller: 'DashboardCtrl'
       });
 
       // .state('tab', {
