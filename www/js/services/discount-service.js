@@ -15,9 +15,12 @@ angular.module('festinare_mobile')
 
     var Discounts = $resource(DISCOUNTS_URL, {}, {});
 
-    DiscountService.getDiscounts = function () {
+    DiscountService.getDiscounts = function (limit, offset) {
       var deferred = $q.defer();
-      Discounts.get().$promise.then(function (clients) {
+      Discounts.get({
+        limit: limit,
+        offset: offset
+      }).$promise.then(function (clients) {
         // client.discounts => array of clients, FIX
         deferred.resolve(clients.discounts);
       }).catch(function (error) {

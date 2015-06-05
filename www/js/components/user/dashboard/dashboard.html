@@ -20,5 +20,15 @@
         </ion-slide-box>
       </div>
     </div>
+    <ion-infinite-scroll
+        on-infinite="fetchDiscounts()"
+        ng-if="!noClients"
+        distance="1%"
+        icon="ion-loading-c"
+        immediate-check="false">
+    </ion-infinite-scroll>
+    <div ng-if="noClients">
+      No Available Discounts!
+    </div>
   </ion-content>
 </ion-view>
