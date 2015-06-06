@@ -12,13 +12,13 @@
           {{category.name}}
         </p>
         <rating ng-model="client.avg_rate" max="5"></rating>
-        <ion-slide-box>
-          <ion-slide ng-repeat="discount in client.discounts track by $index">
-            <discount-preview client-id="client._id" discount="discount">
-            </discount-preview>
-          </ion-slide>
-        </ion-slide-box>
       </div>
+      <ion-slide-box>
+        <ion-slide ng-repeat="discount in client.discounts track by $index">
+          <discount-preview client-id="client._id" discount="discount">
+          </discount-preview>
+        </ion-slide>
+      </ion-slide-box>
     </div>
     <ion-infinite-scroll
         on-infinite="fetchDiscounts()"
