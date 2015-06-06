@@ -15,6 +15,7 @@ angular.module('festinare_mobile')
       controller: function ($scope) {
         $scope.likeDiscount = function (clientId, discount) {
           console.log(clientId, discount);
+          discount.liked = true;
         };
       }
     };

@@ -14,7 +14,7 @@
         <rating ng-model="client.avg_rate" max="5"></rating>
       </div>
       <ion-slide-box>
-        <ion-slide ng-repeat="discount in client.discounts track by $index">
+        <ion-slide ng-repeat="discount in client.discounts track by $index" ng-if="!discount.liked">
           <discount-preview client-id="client._id" discount="discount">
           </discount-preview>
         </ion-slide>
