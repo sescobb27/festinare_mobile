@@ -12,6 +12,15 @@ angular.module('festinare_mobile')
       });
     };
 
+    var formatDiscountUntilDate = function (discount) {
+      var tmp = new Date(discount.created_at);
+      return new Date(tmp.getTime() + (discount.duration * 60000));
+    };
+
+    $scope.hashtags = function (hashtags) {
+      return hashtags ? hashtags.join(' ') : '';
+    };
+
     var categories = CategoriesService.all();
 
     $scope.getCategoryIcon = function (category) {
@@ -36,7 +45,10 @@ angular.module('festinare_mobile')
         }
 
         clients.forEach(function (client) {
-          client.image_url = client.image_url || 'http://placehold.it/150x150';
+          client.image_url = client.image_url || 'http://placehold.it/160x150';
+          angular.forEach(client.discounts, function (discount) {
+            discount.until_date = formatDiscountUntilDate(discount);
+          });
         });
 
         if ($scope.clients) {
@@ -51,6 +63,7 @@ angular.module('festinare_mobile')
       }).catch(function (error) {
         // TODO
         console.error(error);
+        $scope.noClients = true;
         $ionicLoading.hide();
         $scope.$broadcast('scroll.infiniteScrollComplete');
       });

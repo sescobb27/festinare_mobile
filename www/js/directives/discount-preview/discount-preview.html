@@ -1,10 +1,11 @@
-<div>
-  <h2>
-    {{discount.title}}
-  </h2>
-  <button class="button button-block button-positive"
-          ng-click="likeDiscount(clientId, discount)">
-    <i class="icon ion-checkmark-round"></i>
+<li class="collection-item avatar">
+  <i class="mdi-maps-local-offer circle green"></i>
+  <span class="title">{{discount.title}}</span>
+  <p>Expire On: {{ discount.until_date | date:'dd/MMM hh:ma' }}</p>
+  <a href="javascript:;"
+      ng-click="likeDiscount(clientId, discount)"
+      class="btn-floating waves-effect waves-light secondary-content blue">
+    <i class="mdi-action-favorite"></i>
     Like
-  </button>
-</div>
+  </a>
+</li>

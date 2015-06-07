@@ -1,6 +1,43 @@
 <ion-view view-title="dashboard" align-title="left">
   <ion-content>
-    <div ng-repeat="client in clients track by $index" class="list card">
+    <div class="row" ng-repeat="client in clients track by $index">
+      <div class="card medium">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" ng-src="{{client.image_url}}">
+          <span class="card-title">{{client.name}}</span>
+        </div>
+        <div class="card-content">
+          <span class="card-title grey-text text-darken-4">
+            {{client.name}}
+            <i class="mdi-navigation-more-vert right activator"></i>
+          </span>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">
+            {{client.name}}
+            <i class="mdi-navigation-close right"></i>
+          </span>
+          <ul class="collection">
+            <discount-preview ng-repeat="discount in client.discounts track by $index"
+                              client-id="client._id"
+                              discount="discount"
+                              ng-if="!discount.liked">
+            </discount-preview>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <ion-infinite-scroll
+        on-infinite="fetchDiscounts()"
+        ng-if="!noClients"
+        distance="1%"
+        icon="ion-loading-c"
+        immediate-check="false">
+    </ion-infinite-scroll>
+    <div ng-if="noClients">
+      No Available Discounts!
+    </div>
+<!--     <div  class="list card">
       <div class="item item-avatar">
         <img ng-src="{{client.image_url}}">
         <h2>
@@ -29,6 +66,6 @@
     </ion-infinite-scroll>
     <div ng-if="noClients">
       No Available Discounts!
-    </div>
+    </div> -->
   </ion-content>
 </ion-view>
