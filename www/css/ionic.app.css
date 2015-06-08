@@ -7675,5 +7675,5 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
-.slider-slide {
-  min-height: 200px; }
+.card.medium {
+  width: 100%; }
