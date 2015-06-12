@@ -5,6 +5,7 @@ angular.module('festinare_mobile')
 
     var UserService = this;
     const USERS_URL = API_V1_URL + '/users/:action/:id';
+    const USERS_URL_MOBILE = API_V1_URL + '/users/:id/mobile';
 
     var User = $resource(USERS_URL, {
       action: '@action',
@@ -13,6 +14,14 @@ angular.module('festinare_mobile')
       login: {
         method: 'POST'
       },
+      update: {
+        method: 'PUT'
+      }
+    });
+
+    var Mobile = $resource(USERS_URL_MOBILE, {
+      id: '@id'
+    }, {
       update: {
         method: 'PUT'
       }
@@ -32,6 +41,17 @@ angular.module('festinare_mobile')
 
     UserService.logout = function () {
       return User.save({ action: 'logout' }).$promise;
+    };
+
+    UserService.addDevice = function (id, platform, deviceToken) {
+      return Mobile.update({ id: id }, {
+        user: {
+          mobile: {
+            token: deviceToken,
+            platform: platform
+          }
+        }
+      }).$promise;
     };
 
     return UserService;

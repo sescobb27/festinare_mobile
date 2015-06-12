@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "angular-resource": "~1.4.0",
-    "ionic-rating": "~0.1.0"
+    "ionic-rating": "~0.1.0",
+    "ngCordova": "~0.1.17-alpha"
   }
 }

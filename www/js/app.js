@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('festinare_mobile', ['ionic', 'ngResource', 'ionic.rating'])
+angular.module('festinare_mobile', ['ionic', 'ngResource', 'ionic.rating', 'ngCordova'])
   .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
     // TODO
@@ -64,7 +64,7 @@ angular.module('festinare_mobile', ['ionic', 'ngResource', 'ionic.rating'])
       }
     };
   })
-  .run(function($ionicPlatform, $rootScope) {
+  .run(function($ionicPlatform, $rootScope, $cordovaPush, DeviceService) {
     $ionicPlatform.ready(function() {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -73,15 +73,46 @@ angular.module('festinare_mobile', ['ionic', 'ngResource', 'ionic.rating'])
       }
       if (window.StatusBar) {
         // org.apache.cordova.statusbar required
-        StatusBar.styleLightContent();
+        window.StatusBar.styleLightContent();
       }
+
+      /************************************************************************
+        iOS
+        Setup Push Notifications when the App is first opened:
+       ************************************************************************/
+      if (ionic.Platform.isIOS()) {
+        $cordovaPush.register({
+          'badge': true,
+          'sound': true,
+          'alert': true,
+        }).then(function(deviceToken) {
+          DeviceService.registeredOnIOs(deviceToken);
+        }).catch(function(error) {
+          // TODO
+          console.error(error);
+        });
+
+      } else if (ionic.Platform.isAndroid()) {
+        $cordovaPush.register({
+          // TODO
+          'senderID': '516765447023',
+        });
+      }
+
+      $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+        if (ionic.Platform.isIOS()) {
+          DeviceService.handleIOSNotification(notification);
+        } else if (ionic.Platform.isAndroid()) {
+          DeviceService.handleAndroidNotification(notification);
+        }
+      });
     });
 
     // TODO
     // ALPHA PHASE
     // GCM push registrations
-    $rootScope.$on('$cordovaPush:tokenReceived', function(event, data) {
-      console.log('Got token', data.token, data.platform);
-      // Do something with the token
-    });
+    // $rootScope.$on('$cordovaPush:tokenReceived', function(event, data) {
+    //   console.log('Got token', data.token, data.platform);
+    //   // Do something with the token
+    // });
   });
