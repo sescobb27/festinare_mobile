@@ -24,6 +24,7 @@
   "globalstrict": true,
   "globals": {
     "angular": false,
-    "cordova": false
+    "cordova": false,
+    "ionic": false
   }
 }
