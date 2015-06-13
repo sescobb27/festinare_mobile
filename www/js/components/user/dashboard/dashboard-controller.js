@@ -33,14 +33,19 @@ angular.module('festinare_mobile')
       return icon;
     };
 
-    $scope.fetchDiscounts = function () {
+    var endIonicEvents = function () {
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+      $scope.$broadcast('scroll.refreshComplete');
+    };
+
+    $scope.fetchDiscounts = function (operation) {
       showLoading();
       offset += discountsLimit;
       DiscountService.getDiscounts(discountsLimit, offset).then(function (clients) {
         if (clients.length === 0) {
           $scope.noClients = true;
           $ionicLoading.hide();
-          $scope.$broadcast('scroll.infiniteScrollComplete');
+          endIonicEvents();
           return;
         }
 
@@ -51,21 +56,23 @@ angular.module('festinare_mobile')
           });
         });
 
-        if ($scope.clients) {
+        if ($scope.clients && operation === 'prepend') {
+          $scope.clients = clients.concat($scope.clients);
+        } else if ($scope.clients) {
           $scope.clients = $scope.clients.concat(clients);
         } else {
           $scope.clients = clients;
         }
 
         $ionicLoading.hide();
-        $scope.$broadcast('scroll.infiniteScrollComplete');
+        endIonicEvents();
         console.log($scope.clients.length);
       }).catch(function (error) {
         // TODO
         console.error(error);
         $scope.noClients = true;
         $ionicLoading.hide();
-        $scope.$broadcast('scroll.infiniteScrollComplete');
+        endIonicEvents();
       });
     };
 

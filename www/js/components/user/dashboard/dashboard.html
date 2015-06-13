@@ -1,32 +1,17 @@
 <ion-view view-title="dashboard" align-title="left">
   <ion-content>
-    <div class="row" ng-repeat="client in clients track by $index">
-      <div class="card medium">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" ng-src="{{client.image_url}}">
-          <span class="card-title">{{client.name}}</span>
-        </div>
-        <div class="card-content">
-          <span class="card-title grey-text text-darken-4">
-            {{client.name}}
-            <i class="mdi-navigation-more-vert right activator"></i>
-          </span>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">
-            {{client.name}}
-            <i class="mdi-navigation-close right"></i>
-          </span>
-          <ul class="collection">
-            <discount-preview ng-repeat="discount in client.discounts track by $index"
-                              client-id="client._id"
-                              discount="discount"
-                              ng-if="!discount.liked">
-            </discount-preview>
-          </ul>
-        </div>
-      </div>
-    </div>
+
+    <ion-refresher on-refresh="fetchDiscounts('prepend')">
+    </ion-refresher>
+
+    <span ng-repeat="client in clients track by $index">
+      <discount-preview ng-repeat="discount in client.discounts track by $index"
+                        client="client"
+                        discount="discount"
+                        ng-if="!discount.liked">
+      </discount-preview>
+    </span>
+
     <ion-infinite-scroll
         on-infinite="fetchDiscounts()"
         ng-if="!noClients"
@@ -34,38 +19,10 @@
         icon="ion-loading-c"
         immediate-check="false">
     </ion-infinite-scroll>
+
     <div ng-if="noClients">
       No Available Discounts!
     </div>
-<!--     <div  class="list card">
-      <div class="item item-avatar">
-        <img ng-src="{{client.image_url}}">
-        <h2>
-          {{client.name}}
-        </h2>
-        <p class="item item-icon-left"
-            ng-repeat="category in client.categories">
-          <i class="icon {{getCategoryIcon(category)}}"></i>
-          {{category.name}}
-        </p>
-        <rating ng-model="client.avg_rate" max="5"></rating>
-      </div>
-      <ion-slide-box>
-        <ion-slide ng-repeat="discount in client.discounts track by $index" ng-if="!discount.liked">
-          <discount-preview client-id="client._id" discount="discount">
-          </discount-preview>
-        </ion-slide>
-      </ion-slide-box>
-    </div>
-    <ion-infinite-scroll
-        on-infinite="fetchDiscounts()"
-        ng-if="!noClients"
-        distance="1%"
-        icon="ion-loading-c"
-        immediate-check="false">
-    </ion-infinite-scroll>
-    <div ng-if="noClients">
-      No Available Discounts!
-    </div> -->
+
   </ion-content>
 </ion-view>
