@@ -16,11 +16,13 @@ angular.module('festinare_mobile', ['ionic', 'ngResource', 'ionic.rating', 'ngCo
 
     $stateProvider
       .state('login', {
+        cache: false,
         url: '/login',
         templateUrl: 'js/components/auth/login.html',
         controller: 'AuthCtrl'
       })
       .state('register', {
+        cache: false,
         url: '/register',
         templateUrl: 'js/components/auth/register.html',
         controller: 'AuthCtrl'
