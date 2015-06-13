@@ -7,7 +7,7 @@ angular.module('festinare_mobile')
       templateUrl: 'js/directives/discount-preview/discount-preview.html',
       scope: {
         discount: '=',
-        clientId: '='
+        client: '='
       },
       link: function (scope, iElement, iAttrs) {
 

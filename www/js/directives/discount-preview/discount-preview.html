@@ -1,11 +1,22 @@
-<li class="collection-item avatar">
-  <i class="mdi-maps-local-offer circle green"></i>
-  <span class="title">{{discount.title}}</span>
-  <p>Expire On: {{ discount.until_date | date:'dd/MMM hh:ma' }}</p>
-  <a href="javascript:;"
-      ng-click="likeDiscount(clientId, discount)"
-      class="btn-floating waves-effect waves-light secondary-content blue">
-    <i class="mdi-action-favorite"></i>
+<div class="list card">
+
+  <div class="item item-avatar">
+    <img ng-src="{{client.image_url}}">
+    <i class="mdi-maps-local-offer circle green"></i>
+    <h2>{{client.name}}</h2>
+    <p>{{discount.title}}</p>
+    <p>Expire On: {{ discount.until_date | date:'dd/MMM hh:ma' }}</p>
+  </div>
+
+  <div class="item item-image">
+    <img ng-src="{{client.image_url}}">
+  </div>
+
+  <a class="item item-icon-left positive"
+      href="javascript:;"
+      ng-click="likeDiscount(client._id, discount)">
+    <i class="icon ion-heart"></i>
     Like
   </a>
-</li>
+
+</div>
