@@ -9,13 +9,18 @@ angular.module('festinare_mobile')
         discount: '=',
         client: '='
       },
-      link: function (scope, iElement, iAttrs) {
+      controller: function ($scope, DiscountService, AuthService) {
+        AuthService.getCurrentUser().then(function (user) {
+          $scope.user = user;
+        });
 
-      },
-      controller: function ($scope) {
-        $scope.likeDiscount = function (clientId, discount) {
-          console.log(clientId, discount);
-          discount.liked = true;
+        $scope.likeDiscount = function () {
+          DiscountService.likeDiscount($scope.user, $scope.client, $scope.discount).then(function () {
+            $scope.discount.liked = true;
+          }).catch(function (error) {
+            // TODO
+            console.error(error);
+          });
         };
       }
     };
