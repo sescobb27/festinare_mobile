@@ -1,0 +1,18 @@
+<div class="list card">
+
+  <div class="item item-avatar">
+    <img ng-src="{{client.image_url}}">
+    <i class="mdi-maps-local-offer circle green"></i>
+    <h2>{{client.name}}</h2>
+  </div>
+
+  <div class="item item-image">
+    <img ng-src="{{client.image_url}}">
+    <input type="number" ng-model="review.rate" placeholder="Rate">
+    <input type="text" ng-model="review.feedback" placeholder="Feedback">
+    <button class="button button-balanced" ng-click="sendFeedback()">
+      Send
+    </button>
+  </div>
+
+</div>

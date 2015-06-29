@@ -55,6 +55,12 @@
                 Preferences
               </i>
             </a>
+
+            <a ui-sref="review" class="item" menu-close>
+              <i class="mdi-navigation-more-vert">
+                Give feedback to clients you liked
+              </i>
+            </a>
           </ul>
         </ion-content>
       </ion-side-menu>
@@ -73,20 +79,21 @@
 
       <!-- inject:js -->
       <script src="js/app.js"></script>
-      <script src="js/controllers.js"></script>
-      <script src="js/services.js"></script>
+      <script src="js/config/constants.js"></script>
       <script src="js/services/auth-service.js"></script>
       <script src="js/services/categories-service.js"></script>
+      <script src="js/services/client-service.js"></script>
       <script src="js/services/device-service.js"></script>
       <script src="js/services/discount-service.js"></script>
       <script src="js/services/session-service.js"></script>
       <script src="js/services/user-service.js"></script>
-      <script src="js/config/constants.js"></script>
-      <script src="js/directives/discount-preview/discount-preview-directive.js"></script>
       <script src="js/components/application/application-controller.js"></script>
       <script src="js/components/auth/auth-controller.js"></script>
-      <script src="js/components/user/dashboard/dashboard-controller.js"></script>
+      <script src="js/directives/client-preview/client-preview-directive.js"></script>
+      <script src="js/directives/discount-preview/discount-preview-directive.js"></script>
       <script src="js/components/user/preferences/preferences-controller.js"></script>
+      <script src="js/components/user/review/review-controller.js"></script>
+      <script src="js/components/user/dashboard/dashboard-controller.js"></script>
       <!-- endinject -->
   </body>
 </html>

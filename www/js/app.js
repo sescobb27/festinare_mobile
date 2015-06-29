@@ -36,6 +36,11 @@ angular.module('festinare_mobile', ['ionic', 'ngResource', 'ionic.rating', 'ngCo
         url: '/dashboard',
         templateUrl: 'js/components/user/dashboard/dashboard.html',
         controller: 'DashboardCtrl'
+      })
+      .state('review', {
+        url: '/review',
+        templateUrl: 'js/components/user/review/review.html',
+        controller: 'ReviewCtrl'
       });
 
     // if none of the above states are matched, use this as the fallback

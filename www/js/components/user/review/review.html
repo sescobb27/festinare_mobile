@@ -1,0 +1,13 @@
+<ion-view>
+  <ion-content>
+
+    <span ng-repeat="client in clients track by $index">
+      <client-preview client="client"></client-preview>
+    </span>
+
+    <div ng-if="noClients">
+      No Reviews Available
+    </div>
+
+  </ion-content>
+</ion-view>
