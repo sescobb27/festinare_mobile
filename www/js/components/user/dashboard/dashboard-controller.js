@@ -8,7 +8,7 @@ angular.module('festinare_mobile')
 
     var showLoading = function () {
       $ionicLoading.show({
-        template: 'loading'
+        template: '<ion-spinner></ion-spinner>'
       });
     };
 
