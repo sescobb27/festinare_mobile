@@ -11,7 +11,7 @@ angular.module('festinare_mobile')
 
     $scope.login = function () {
       AuthService.login($scope.credentials).then(function () {
-
+        $state.go('dashboard');
       }).catch(function (error) {
         // TODO
         console.error(error);
@@ -20,7 +20,7 @@ angular.module('festinare_mobile')
 
     $scope.register = function () {
       AuthService.register($scope.credentials).then(function () {
-
+        $state.go('dashboard');
       }).catch(function (error) {
         // TODO
         console.error(error);

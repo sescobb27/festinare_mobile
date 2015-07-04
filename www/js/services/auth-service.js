@@ -23,7 +23,7 @@ angular.module('festinare_mobile')
 
     AuthService.login = function(credentials) {
       return UserService.login(credentials).then(function (res) {
-        SessionService.addSession(res);
+        SessionService.addSession(res.token);
         user_promise = UserService.get().then(function (res) {
           user = res.user;
           notify(user);
@@ -36,8 +36,16 @@ angular.module('festinare_mobile')
       });
     };
 
-    AuthService.register = function(credentials) {
-
+    AuthService.register = function(userData) {
+      return UserService.register(userData).then(function (res) {
+        SessionService.addSession(res.token);
+        user_promise = UserService.get().then(function (res) {
+          user = res.user;
+          notify(user);
+          return user;
+        });
+        return user_promise;
+      });
     };
 
     AuthService.logout = function() {

@@ -1,1 +1,81 @@
-<h1>Register</h1>
+<ion-view align-title="left">
+  <ion-content>
+    <div class="hero no-header flat">
+      <div class="content">
+        <div class="app-icon"></div>
+        <h1>Festinare Discount</h1>
+      </div>
+    </div>
+    <form name="login_form" ng-submit="register()">
+      <div class="list list-inset">
+        <label class="item item-input">
+          <i class="icon ion-happy placeholder-icon"></i>
+          <input
+            placeholder="Full Name"
+            name="fullname"
+            highlight-color="balanced"
+            type="text"
+            ng-model="credentials.fullname">
+          </input>
+        </label>
+      </div>
+
+      <div class="list list-inset">
+        <label class="item item-input">
+          <i class="icon ion-happy placeholder-icon"></i>
+          <input
+            placeholder="Email"
+            name="email"
+            highlight-color="balanced"
+            type="text"
+            ng-model="credentials.email">
+          </input>
+        </label>
+      </div>
+
+      <div class="list list-inset">
+        <label class="item item-input">
+          <i class="icon ion-happy placeholder-icon"></i>
+          <input
+            placeholder="Username"
+            name="username"
+            highlight-color="balanced"
+            type="text"
+            ng-model="credentials.username">
+          </input>
+        </label>
+      </div>
+
+      <div class="list list-inset">
+        <label class="item item-input">
+          <i class="icon ion-lock-combination placeholder-icon"></i>
+          <input
+            placeholder="Password"
+            name="password"
+            highlight-color="energized"
+            type="password"
+            ng-model="credentials.password">
+          </input>
+        </label>
+      </div>
+
+      <div class="padding">
+        <button class="button button-full button-assertive ink" type="submit">
+          Register
+        </button>
+      </div>
+    </form>
+
+    <div class="button-bar social-login">
+      <button class="button button-small button-border icon-left ion-social-google button-assertive">
+        Google+
+      </button>
+      <button class="button button-small button-border icon-left ion-social-twitter button-calm">
+        Twitter
+      </button>
+      <button class="button button-small button-border icon-left ion-social-facebook button-positive">
+        Facebook
+      </button>
+    </div>
+  </ion-content>
+</ion-view>

@@ -31,6 +31,10 @@ angular.module('festinare_mobile')
       return User.get({ action: 'me' }).$promise;
     };
 
+    UserService.register = function (data) {
+      return User.save({}, { user: data }).$promise;
+    };
+
     UserService.login = function (credentials) {
       return User.login({action: 'login'}, { user: credentials }).$promise;
     };
