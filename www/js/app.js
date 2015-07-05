@@ -83,6 +83,14 @@ angular.module('festinare_mobile', ['ionic', 'ngResource', 'ionic.rating', 'ngCo
         window.StatusBar.styleLightContent();
       }
 
+      window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
+      window.requestFileSystem(window.PERSISTENT, 10000, function (fs) {
+        console.log('FS: ', fs);
+      }, function (error) {
+        // TODO
+        console.log(error);
+      });
+
       /************************************************************************
         iOS
         Setup Push Notifications when the App is first opened:
@@ -113,7 +121,7 @@ angular.module('festinare_mobile', ['ionic', 'ngResource', 'ionic.rating', 'ngCo
           DeviceService.handleAndroidNotification(notification);
         }
       });
-    });
+    }, false);
 
     // TODO
     // ALPHA PHASE

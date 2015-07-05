@@ -21,6 +21,8 @@ angular.module('festinare_mobile')
             console.log('succes');
           }).catch(function (error) {
             // TODO
+            // if error.status === 403 (forbidden) hasn't liked that that client
+            // if error.status === 405 (method not allowed) user already review that client
             console.error(error);
           });
         };
